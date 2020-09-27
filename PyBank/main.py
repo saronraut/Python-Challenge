@@ -8,6 +8,8 @@ budget_csv = os.path.join("Resources","budget_data.csv")
 #create variables for list
 months = []
 prof_loss = []
+monthly_change = []
+
 
       
 #open the csv file
@@ -19,49 +21,43 @@ with open(budget_csv,"r") as csvdata:
     for row in csvreader:
         months.append(row[0])
         prof_loss.append(int(row[1]))
-       
-      
+
+ #to get the average change between each month       
+    for col in range(len(prof_loss)-1):
+        monthly_change.append(prof_loss[col+1] - prof_loss[col])
+
+avg = round(sum(monthly_change)/len(monthly_change),2)
+
+#using the values in monthly_change identify the increase and decrease, +1 for month because it will be for next month since doing average
+max_inc = max(monthly_change)
+max_month = months[monthly_change.index(max_inc)+ 1]
+
+min_dec = min(monthly_change)
+min_month = months[monthly_change.index(min_dec)+ 1]
+         
 #using the len() calculate the total of month in dataset
 total_month = len(months)
-print(f'Total Months: {total_month}')
-
 # #using sum()create the total
 total_profloss = sum(prof_loss)
-print(f'Total profit/loss: ${total_profloss}')
+
  
-#Analysis
-
-prof_loss = []
-def avg(bank_data):
-    total = 0
-    t_numb = len(bank_data)
-    for numb in bank_data:
-        total = total + numb
-    average = total/t_numb
-    print(avg)
-    return avg
-
-avg(prof_loss)
-
-
-
-
-
+#Print Values
+print('Financial Analysis')
+print("---------------------------- \n")
+print(f'Total Months: {total_month}')
+print(f'Total profit/loss: ${total_profloss}')
+print(f'Average Change: {avg}')
+print(f'Greatest Increase in Profits: {max_month} (${max_inc})')
+print(f'Greatest Decrease in Profits: {min_month} (${min_dec}')
     
-    
-    
-
-
-
-#use max()to find the greatest increase in profit..
-
-#needs to get data for month and amount
-
-
-#use min()to find the greatest decrease in profit..
-#needs to get data for month and amount
-
-
-#use print to display the data
-
-#export the data on csv
+#create an output for txt file
+output_path = os.path.join("pybank.txt")
+with open('pybank.txt','w') as file: 
+    file.write('Financial Analysis')
+    file.write("---------------------------- \n")
+    file.write(f'Total Months: {total_month}\n')
+    file.write(f'Total profit/loss: ${total_profloss}\n')
+    file.write(f'Average Change: {avg}\n')
+    file.write(f'Greatest Increase in Profits: {max_month} (${max_inc})\n')
+    file.write(f'Greatest Decrease in Profits: {min_month} (${min_dec}\n')
+file.close
