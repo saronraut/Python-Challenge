@@ -9,9 +9,7 @@ budget_csv = os.path.join("Resources","budget_data.csv")
 months = []
 prof_loss = []
 monthly_change = []
-
-
-      
+  
 #open the csv file
 with open(budget_csv,"r") as csvdata:
     csvreader = csv.reader(csvdata,delimiter=",")
@@ -41,7 +39,7 @@ total_month = len(months)
 total_profloss = sum(prof_loss)
 
  
-#Print Values
+#Print Data
 print('Financial Analysis')
 print("---------------------------- \n")
 print(f'Total Months: {total_month}')
