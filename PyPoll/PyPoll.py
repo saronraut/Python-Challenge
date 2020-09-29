@@ -1,3 +1,6 @@
+#scripts was created using external resources such as geekforgeek.org and stackoverflow
+# Class Activity examples were used to build to script as well.  
+
 #import modules
 import csv
 import os
@@ -26,7 +29,8 @@ with open(election_csv,"r") as csvdata:
         if cand not in unique_cand:
             unique_cand.append(cand)
 
-#creating a function that that loops through the name of candidates in row 2 to find the most reoccuring name. 
+#creating a function that that loops through the name of candidates in row 2 to find the most reoccuring name.
+# the function was created using resources from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
 def most_count(list):
     counter = 0 
     cand_name = list[0]
@@ -37,6 +41,8 @@ def most_count(list):
             counter = curr_most
             curr_most = cand_name
         return curr_most
+
+# Winner is the name that occured the most in candidates list, hence received the most vote        
 winner = (most_count(candidates))
 
  #total vote casted according to the csv.        
@@ -59,7 +65,7 @@ per_2 = round((vcount_2/total_votes)*100,2)
 vcount_3 = candidates.count(unique_cand[3])
 per_3 = round((vcount_3/total_votes)*100,2)
 
-
+#print out the data on each candidates
 print("Election Results \n")
 print("----------------------------\n")
 print(f'{unique_cand[0]} : {per_0}% ({vcount_0})')

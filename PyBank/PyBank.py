@@ -1,3 +1,6 @@
+#scripts was created using external resources such as geekforgeek.org and stackoverflow
+# Class Activity examples were used to build to script as well.  
+
 #import modules
 import csv
 import os
@@ -15,7 +18,7 @@ with open(budget_csv,"r") as csvdata:
     csvreader = csv.reader(csvdata,delimiter=",")
     #to skip the header
     next(csvreader)
-    #creating a for loops to get the month and changes from the csv as a list
+    #creating for loops to get the month and changes from the csv as a list
     for row in csvreader:
         months.append(row[0])
         prof_loss.append(int(row[1]))
@@ -24,9 +27,11 @@ with open(budget_csv,"r") as csvdata:
     for col in range(len(prof_loss)-1):
         monthly_change.append(prof_loss[col+1] - prof_loss[col])
 
+#Average change for the period
 avg = round(sum(monthly_change)/len(monthly_change),2)
 
-#using the values in monthly_change identify the increase and decrease, +1 for month because it will be for next month since doing average
+#using the values in monthly_change identify the increase and decrease
+#+1 for month because it will be for next month since doing average
 max_inc = max(monthly_change)
 max_month = months[monthly_change.index(max_inc)+ 1]
 
@@ -35,10 +40,10 @@ min_month = months[monthly_change.index(min_dec)+ 1]
          
 #using the len() calculate the total of month in dataset
 total_month = len(months)
-# #using sum()create the total
+
+# #using sum()create the sum total profit/loss value
 total_profloss = sum(prof_loss)
 
- 
 #Print Data
 print('Financial Analysis')
 print("---------------------------- \n")
